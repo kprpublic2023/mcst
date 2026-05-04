@@ -1,372 +1,554 @@
-# 정부조직 SNS 시드 파일 (2026년 정부조직법 기준 19부 6처 19청 6위원회)
-#
-# 사용법:
-#   - 각 기관의 accounts 항목에 공식 SNS 핸들/URL을 채워주세요.
-#   - 채워지지 않은 항목은 수집기가 "운영하지 않음(또는 미확인)"으로 처리합니다.
-#   - verified: false 인 항목은 자동 시드로 추정만 한 것이므로 반드시 검토 후 true 로 바꿔주세요.
-#   - 실 수집 시 platform 별 핸들 형식:
-#       youtube   : "@channelhandle"  또는  "channel/UCxxxx"
-#       instagram : "username"        (앞에 @ 없이)
-#       x         : "username"        (앞에 @ 없이)
-#       facebook  : "pagename"        또는 페이지 ID
-#       blog      : full URL (네이버/티스토리 등)
-#
-# verified 필드:
-#   true  = 사람이 공식 홈페이지·계정에서 확인 완료
-#   false = 자동 추정/공란. UI에서 노란 배지로 표시됨.
-
-ministries:  # 19부
-  - id: moef
-    name_ko: 기획재정부
-    name_en: Ministry of Economy and Finance
-    homepage: https://www.moef.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: moe
-    name_ko: 교육부
-    name_en: Ministry of Education
-    homepage: https://www.moe.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: msit
-    name_ko: 과학기술정보통신부
-    name_en: Ministry of Science and ICT
-    homepage: https://www.msit.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mofa
-    name_ko: 외교부
-    name_en: Ministry of Foreign Affairs
-    homepage: https://www.mofa.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: unikorea
-    name_ko: 통일부
-    name_en: Ministry of Unification
-    homepage: https://www.unikorea.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: moj
-    name_ko: 법무부
-    name_en: Ministry of Justice
-    homepage: https://www.moj.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mnd
-    name_ko: 국방부
-    name_en: Ministry of National Defense
-    homepage: https://www.mnd.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mois
-    name_ko: 행정안전부
-    name_en: Ministry of the Interior and Safety
-    homepage: https://www.mois.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mpva
-    name_ko: 국가보훈부
-    name_en: Ministry of Patriots and Veterans Affairs
-    homepage: https://www.mpva.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mcst
-    name_ko: 문화체육관광부
-    name_en: Ministry of Culture, Sports and Tourism
-    homepage: https://www.mcst.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mafra
-    name_ko: 농림축산식품부
-    name_en: Ministry of Agriculture, Food and Rural Affairs
-    homepage: https://www.mafra.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: motie
-    name_ko: 산업통상자원부
-    name_en: Ministry of Trade, Industry and Energy
-    homepage: https://www.motie.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mohw
-    name_ko: 보건복지부
-    name_en: Ministry of Health and Welfare
-    homepage: https://www.mohw.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: me
-    name_ko: 환경부
-    name_en: Ministry of Environment
-    homepage: https://www.me.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: moel
-    name_ko: 고용노동부
-    name_en: Ministry of Employment and Labor
-    homepage: https://www.moel.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mogef
-    name_ko: 여성가족부
-    name_en: Ministry of Gender Equality and Family
-    homepage: https://www.mogef.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: molit
-    name_ko: 국토교통부
-    name_en: Ministry of Land, Infrastructure and Transport
-    homepage: https://www.molit.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mof
-    name_ko: 해양수산부
-    name_en: Ministry of Oceans and Fisheries
-    homepage: https://www.mof.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mss
-    name_ko: 중소벤처기업부
-    name_en: Ministry of SMEs and Startups
-    homepage: https://www.mss.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-offices:  # 6처
-  # NOTE: 2026년 시점 6처 구성은 정부조직법 개정 이력에 따라 달라질 수 있습니다.
-  #       아래는 일반적으로 알려진 처 단위 기관입니다. 검토 후 수정해 주세요.
-  - id: pss
-    name_ko: 대통령경호처
-    name_en: Presidential Security Service
-    homepage: https://www.pss.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: opm
-    name_ko: 국무조정실/국무총리비서실
-    name_en: Office for Government Policy Coordination
-    homepage: https://www.opm.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mpm
-    name_ko: 인사혁신처
-    name_en: Ministry of Personnel Management
-    homepage: https://www.mpm.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: moleg
-    name_ko: 법제처
-    name_en: Ministry of Government Legislation
-    homepage: https://www.moleg.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mfds
-    name_ko: 식품의약품안전처
-    name_en: Ministry of Food and Drug Safety
-    homepage: https://www.mfds.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: office_placeholder
-    name_ko: (6번째 처 - 확인 필요)
-    name_en: TBD
-    homepage: ""
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-agencies:  # 19청
-  - id: nts
-    name_ko: 국세청
-    name_en: National Tax Service
-    homepage: https://www.nts.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: customs
-    name_ko: 관세청
-    name_en: Korea Customs Service
-    homepage: https://www.customs.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: pps
-    name_ko: 조달청
-    name_en: Public Procurement Service
-    homepage: https://www.pps.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: kostat
-    name_ko: 통계청
-    name_en: Statistics Korea
-    homepage: https://kostat.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: spo
-    name_ko: 검찰청
-    name_en: Supreme Prosecutors' Office
-    homepage: https://www.spo.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: mma
-    name_ko: 병무청
-    name_en: Military Manpower Administration
-    homepage: https://www.mma.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: dapa
-    name_ko: 방위사업청
-    name_en: Defense Acquisition Program Administration
-    homepage: https://www.dapa.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: police
-    name_ko: 경찰청
-    name_en: Korean National Police Agency
-    homepage: https://www.police.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: nfa
-    name_ko: 소방청
-    name_en: National Fire Agency
-    homepage: https://www.nfa.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: oka
-    name_ko: 재외동포청
-    name_en: Overseas Koreans Agency
-    homepage: https://www.oka.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: khs
-    name_ko: 국가유산청
-    name_en: Korea Heritage Service
-    homepage: https://www.khs.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: rda
-    name_ko: 농촌진흥청
-    name_en: Rural Development Administration
-    homepage: https://www.rda.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: forest
-    name_ko: 산림청
-    name_en: Korea Forest Service
-    homepage: https://www.forest.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: kipo
-    name_ko: 특허청
-    name_en: Korean Intellectual Property Office
-    homepage: https://www.kipo.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: kdca
-    name_ko: 질병관리청
-    name_en: Korea Disease Control and Prevention Agency
-    homepage: https://www.kdca.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: kma
-    name_ko: 기상청
-    name_en: Korea Meteorological Administration
-    homepage: https://www.kma.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: macc
-    name_ko: 행정중심복합도시건설청
-    name_en: Multifunctional Administrative City Construction Agency
-    homepage: https://www.macc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: saemangeum
-    name_ko: 새만금개발청
-    name_en: Saemangeum Development and Investment Agency
-    homepage: https://www.saemangeum.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: kcg
-    name_ko: 해양경찰청
-    name_en: Korea Coast Guard
-    homepage: https://www.kcg.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-commissions:  # 6위원회 (중앙행정기관 위원회)
-  - id: kcc
-    name_ko: 방송통신위원회
-    name_en: Korea Communications Commission
-    homepage: https://www.kcc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: ftc
-    name_ko: 공정거래위원회
-    name_en: Korea Fair Trade Commission
-    homepage: https://www.ftc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: fsc
-    name_ko: 금융위원회
-    name_en: Financial Services Commission
-    homepage: https://www.fsc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: acrc
-    name_ko: 국민권익위원회
-    name_en: Anti-Corruption and Civil Rights Commission
-    homepage: https://www.acrc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: pipc
-    name_ko: 개인정보보호위원회
-    name_en: Personal Information Protection Commission
-    homepage: https://www.pipc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
-
-  - id: nssc
-    name_ko: 원자력안전위원회
-    name_en: Nuclear Safety and Security Commission
-    homepage: https://www.nssc.go.kr
-    verified: false
-    accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
+ministries:
+- id: moef
+  name_ko: 기획재정부
+  name_en: Ministry of Economy and Finance
+  homepage: https://www.moef.go.kr
+  verified: false
+  accounts:
+    youtube: '@moefkorea'
+    instagram: moef_korea
+    x: moefkorea
+    facebook: moefkorea
+    blog: https://blog.naver.com/mosfnet
+- id: moe
+  name_ko: 교육부
+  name_en: Ministry of Education
+  homepage: https://www.moe.go.kr
+  verified: false
+  accounts:
+    youtube: '@ourMOE'
+    instagram: ourmoe
+    x: ourmoe
+    facebook: ourmoe
+    blog: https://blog.naver.com/moeblog
+- id: msit
+  name_ko: 과학기술정보통신부
+  name_en: Ministry of Science and ICT
+  homepage: https://www.msit.go.kr
+  verified: false
+  accounts:
+    youtube: '@msit_kr'
+    instagram: with_msit
+    x: MSIT_KR
+    facebook: withmsit
+    blog: https://blog.naver.com/with_msip
+- id: mofa
+  name_ko: 외교부
+  name_en: Ministry of Foreign Affairs
+  homepage: https://www.mofa.go.kr
+  verified: false
+  accounts:
+    youtube: '@mofakr'
+    instagram: mofa_kr
+    x: mofa_kr
+    facebook: mofakr.eng
+    blog: https://blog.naver.com/mofakr
+- id: unikorea
+  name_ko: 통일부
+  name_en: Ministry of Unification
+  homepage: https://www.unikorea.go.kr
+  verified: false
+  accounts:
+    youtube: '@unikoreatv'
+    instagram: ourunikorea
+    x: UniKorea
+    facebook: unikoreaMOU
+    blog: https://blog.naver.com/gounikorea
+- id: moj
+  name_ko: 법무부
+  name_en: Ministry of Justice
+  homepage: https://www.moj.go.kr
+  verified: false
+  accounts:
+    youtube: '@moj_korea'
+    instagram: moj_korea
+    x: MOJ_KOREA
+    facebook: MOJkorea
+    blog: https://blog.naver.com/mojjustice
+- id: mnd
+  name_ko: 국방부
+  name_en: Ministry of National Defense
+  homepage: https://www.mnd.go.kr
+  verified: false
+  accounts:
+    youtube: '@MNDKOR'
+    instagram: rokmnd
+    x: ROK_MND
+    facebook: MNDKOR
+    blog: https://mndpr.tistory.com
+- id: mois
+  name_ko: 행정안전부
+  name_en: Ministry of the Interior and Safety
+  homepage: https://www.mois.go.kr
+  verified: false
+  accounts:
+    youtube: '@moiskr'
+    instagram: mois_kr
+    x: mopaspr
+    facebook: mopaspr
+    blog: https://blog.naver.com/mopaspr
+- id: mpva
+  name_ko: 국가보훈부
+  name_en: Ministry of Patriots and Veterans Affairs
+  homepage: https://www.mpva.go.kr
+  verified: false
+  accounts:
+    youtube: '@mpva'
+    instagram: mpva_korea
+    x: ''
+    facebook: mpvakorea
+    blog: https://blog.naver.com/mpva_korea
+- id: mcst
+  name_ko: 문화체육관광부
+  name_en: Ministry of Culture, Sports and Tourism
+  homepage: https://www.mcst.go.kr
+  verified: false
+  accounts:
+    youtube: '@mcstkorea'
+    instagram: mcstkorea
+    x: mcst_korea
+    facebook: mcst
+    blog: https://blog.naver.com/mcstkorea
+- id: mafra
+  name_ko: 농림축산식품부
+  name_en: Ministry of Agriculture, Food and Rural Affairs
+  homepage: https://www.mafra.go.kr
+  verified: false
+  accounts:
+    youtube: '@maf_official'
+    instagram: korea_mafra
+    x: ''
+    facebook: korea.mafra
+    blog: https://blog.naver.com/mafrakr
+- id: motie
+  name_ko: 산업통상자원부
+  name_en: Ministry of Trade, Industry and Energy
+  homepage: https://www.motie.go.kr
+  verified: false
+  accounts:
+    youtube: '@motiekr'
+    instagram: motie_kr
+    x: motiekr
+    facebook: motiekr
+    blog: https://blog.naver.com/mocienews
+- id: mohw
+  name_ko: 보건복지부
+  name_en: Ministry of Health and Welfare
+  homepage: https://www.mohw.go.kr
+  verified: false
+  accounts:
+    youtube: '@mohwpr'
+    instagram: mohw_kr
+    x: mohwpr
+    facebook: mohwpr
+    blog: https://blog.naver.com/mohw2016
+- id: me
+  name_ko: 환경부
+  name_en: Ministry of Environment
+  homepage: https://www.me.go.kr
+  verified: false
+  accounts:
+    youtube: '@me_kr'
+    instagram: minenviron
+    x: ME_korea
+    facebook: mineenvironment
+    blog: https://blog.naver.com/mesns
+- id: moel
+  name_ko: 고용노동부
+  name_en: Ministry of Employment and Labor
+  homepage: https://www.moel.go.kr
+  verified: false
+  accounts:
+    youtube: '@moelkr'
+    instagram: molab_kr
+    x: molab_kr
+    facebook: moel.kr
+    blog: https://blog.naver.com/molab_suda
+- id: mogef
+  name_ko: 여성가족부
+  name_en: Ministry of Gender Equality and Family
+  homepage: https://www.mogef.go.kr
+  verified: false
+  accounts:
+    youtube: '@mogefkorea'
+    instagram: mogef.kr
+    x: mogefkorea
+    facebook: mogefkorea
+    blog: https://blog.naver.com/mogefkorea
+- id: molit
+  name_ko: 국토교통부
+  name_en: Ministry of Land, Infrastructure and Transport
+  homepage: https://www.molit.go.kr
+  verified: false
+  accounts:
+    youtube: '@molit_korea'
+    instagram: molit_korea
+    x: molitkorea
+    facebook: molitkorea
+    blog: https://blog.naver.com/mltmkr
+- id: mof
+  name_ko: 해양수산부
+  name_en: Ministry of Oceans and Fisheries
+  homepage: https://www.mof.go.kr
+  verified: false
+  accounts:
+    youtube: '@momaf_kr'
+    instagram: momaf_kr
+    x: MOFKorea
+    facebook: momafkr
+    blog: https://blog.naver.com/koreamof
+- id: mss
+  name_ko: 중소벤처기업부
+  name_en: Ministry of SMEs and Startups
+  homepage: https://www.mss.go.kr
+  verified: false
+  accounts:
+    youtube: '@mss_korea'
+    instagram: mss_kr
+    x: mss_kr
+    facebook: smbakorea
+    blog: https://blog.naver.com/bizinfo1357
+offices:
+- id: pss
+  name_ko: 대통령경호처
+  name_en: Presidential Security Service
+  homepage: https://www.pss.go.kr
+  verified: false
+  accounts:
+    youtube: ''
+    instagram: ''
+    x: ''
+    facebook: ''
+    blog: ''
+- id: opm
+  name_ko: 국무조정실/국무총리비서실
+  name_en: Office for Government Policy Coordination
+  homepage: https://www.opm.go.kr
+  verified: false
+  accounts:
+    youtube: '@opmkr'
+    instagram: korea_opm
+    x: ''
+    facebook: korea.opm
+    blog: https://blog.naver.com/primeminister
+- id: mpm
+  name_ko: 인사혁신처
+  name_en: Ministry of Personnel Management
+  homepage: https://www.mpm.go.kr
+  verified: false
+  accounts:
+    youtube: '@mpm_korea'
+    instagram: mpm_korea
+    x: ''
+    facebook: mpm.kr
+    blog: https://blog.naver.com/happy_mpm
+- id: moleg
+  name_ko: 법제처
+  name_en: Ministry of Government Legislation
+  homepage: https://www.moleg.go.kr
+  verified: false
+  accounts:
+    youtube: '@molegkr'
+    instagram: moleg_kr
+    x: ''
+    facebook: moleg.korea
+    blog: https://blog.naver.com/molegkorea
+- id: mfds
+  name_ko: 식품의약품안전처
+  name_en: Ministry of Food and Drug Safety
+  homepage: https://www.mfds.go.kr
+  verified: false
+  accounts:
+    youtube: '@mfds_kr'
+    instagram: mfds_kr
+    x: mfds_kr
+    facebook: mfds.korea
+    blog: https://blog.naver.com/kfdazzang
+- id: office_placeholder
+  name_ko: (6번째 처 - 확인 필요)
+  name_en: TBD
+  homepage: ''
+  verified: false
+  accounts:
+    youtube: ''
+    instagram: ''
+    x: ''
+    facebook: ''
+    blog: ''
+agencies:
+- id: nts
+  name_ko: 국세청
+  name_en: National Tax Service
+  homepage: https://www.nts.go.kr
+  verified: false
+  accounts:
+    youtube: '@ntskorea'
+    instagram: nts_korea
+    x: ''
+    facebook: ntskorea
+    blog: https://blog.naver.com/ntscafe
+- id: customs
+  name_ko: 관세청
+  name_en: Korea Customs Service
+  homepage: https://www.customs.go.kr
+  verified: false
+  accounts:
+    youtube: '@customs_kr'
+    instagram: korea.customs
+    x: ''
+    facebook: koreacustomsservice
+    blog: https://blog.naver.com/k_customs
+- id: pps
+  name_ko: 조달청
+  name_en: Public Procurement Service
+  homepage: https://www.pps.go.kr
+  verified: false
+  accounts:
+    youtube: '@ppskorea'
+    instagram: korea_pps
+    x: ''
+    facebook: ppskorea
+    blog: https://blog.naver.com/ppskorea
+- id: kostat
+  name_ko: 통계청
+  name_en: Statistics Korea
+  homepage: https://kostat.go.kr
+  verified: false
+  accounts:
+    youtube: '@hi_kostat'
+    instagram: hi_kostat
+    x: hi_kostat
+    facebook: hi.kostat
+    blog: https://blog.naver.com/hi_nso
+- id: spo
+  name_ko: 검찰청
+  name_en: Supreme Prosecutors' Office
+  homepage: https://www.spo.go.kr
+  verified: false
+  accounts:
+    youtube: '@spokorea'
+    instagram: spo_korea
+    x: ''
+    facebook: spokorea
+    blog: https://blog.naver.com/spogood
+- id: mma
+  name_ko: 병무청
+  name_en: Military Manpower Administration
+  homepage: https://www.mma.go.kr
+  verified: false
+  accounts:
+    youtube: '@mma_korea'
+    instagram: mma_korea
+    x: ''
+    facebook: mmakorea
+    blog: https://blog.naver.com/mma9090
+- id: dapa
+  name_ko: 방위사업청
+  name_en: Defense Acquisition Program Administration
+  homepage: https://www.dapa.go.kr
+  verified: false
+  accounts:
+    youtube: '@dapa_korea'
+    instagram: dapa_korea
+    x: ''
+    facebook: dapakorea
+    blog: https://blog.naver.com/dapapr
+- id: police
+  name_ko: 경찰청
+  name_en: Korean National Police Agency
+  homepage: https://www.police.go.kr
+  verified: false
+  accounts:
+    youtube: '@polinarykorea'
+    instagram: koreanpolice
+    x: polinarykorea
+    facebook: polinarykorea
+    blog: https://polinlove.tistory.com
+- id: nfa
+  name_ko: 소방청
+  name_en: National Fire Agency
+  homepage: https://www.nfa.go.kr
+  verified: false
+  accounts:
+    youtube: '@nfa119'
+    instagram: korea_119_nfa
+    x: ''
+    facebook: kfa119
+    blog: https://blog.naver.com/nfa119
+- id: oka
+  name_ko: 재외동포청
+  name_en: Overseas Koreans Agency
+  homepage: https://www.oka.go.kr
+  verified: false
+  accounts:
+    youtube: '@oka_kr'
+    instagram: oka_korea
+    x: ''
+    facebook: okakorea
+    blog: ''
+- id: khs
+  name_ko: 국가유산청
+  name_en: Korea Heritage Service
+  homepage: https://www.khs.go.kr
+  verified: false
+  accounts:
+    youtube: '@khs_korea'
+    instagram: korea_heritage_service
+    x: ''
+    facebook: koreaheritageservice
+    blog: https://blog.naver.com/chagov
+- id: rda
+  name_ko: 농촌진흥청
+  name_en: Rural Development Administration
+  homepage: https://www.rda.go.kr
+  verified: false
+  accounts:
+    youtube: '@rdakorea'
+    instagram: rda_korea
+    x: ''
+    facebook: rdakorea
+    blog: https://blog.naver.com/rda2448
+- id: forest
+  name_ko: 산림청
+  name_en: Korea Forest Service
+  homepage: https://www.forest.go.kr
+  verified: false
+  accounts:
+    youtube: '@forestkorea1967'
+    instagram: korea_forest_service
+    x: ''
+    facebook: kfs.korea
+    blog: https://blog.naver.com/foa2010
+- id: kipo
+  name_ko: 특허청
+  name_en: Korean Intellectual Property Office
+  homepage: https://www.kipo.go.kr
+  verified: false
+  accounts:
+    youtube: '@kipokorea'
+    instagram: kipo_korea
+    x: kipokorea
+    facebook: kipokorea
+    blog: https://blog.naver.com/kipoworld2
+- id: kdca
+  name_ko: 질병관리청
+  name_en: Korea Disease Control and Prevention Agency
+  homepage: https://www.kdca.go.kr
+  verified: false
+  accounts:
+    youtube: '@kdca_official'
+    instagram: kdca_kr
+    x: KoreaCDC
+    facebook: kdca.kr
+    blog: https://blog.naver.com/korea_cdc
+- id: kma
+  name_ko: 기상청
+  name_en: Korea Meteorological Administration
+  homepage: https://www.kma.go.kr
+  verified: false
+  accounts:
+    youtube: '@weatherkma'
+    instagram: kma_sky
+    x: kma_sky
+    facebook: kmaweather
+    blog: https://blog.naver.com/kma_131
+- id: macc
+  name_ko: 행정중심복합도시건설청
+  name_en: Multifunctional Administrative City Construction Agency
+  homepage: https://www.macc.go.kr
+  verified: false
+  accounts:
+    youtube: '@macckorea'
+    instagram: macc_kr
+    x: ''
+    facebook: macckorea
+    blog: https://blog.naver.com/happymaac
+- id: saemangeum
+  name_ko: 새만금개발청
+  name_en: Saemangeum Development and Investment Agency
+  homepage: https://www.saemangeum.go.kr
+  verified: false
+  accounts:
+    youtube: '@saemangeum'
+    instagram: saemangeum_official
+    x: ''
+    facebook: saemangeumkorea
+    blog: https://blog.naver.com/sda1991
+- id: kcg
+  name_ko: 해양경찰청
+  name_en: Korea Coast Guard
+  homepage: https://www.kcg.go.kr
+  verified: false
+  accounts:
+    youtube: '@kcg_official'
+    instagram: korea_coast_guard
+    x: ''
+    facebook: kcgkorea
+    blog: https://blog.naver.com/kcgpr
+commissions:
+- id: kcc
+  name_ko: 방송통신위원회
+  name_en: Korea Communications Commission
+  homepage: https://www.kcc.go.kr
+  verified: false
+  accounts:
+    youtube: '@kcckorea'
+    instagram: kcc_kr
+    x: ''
+    facebook: kcc.korea
+    blog: https://blog.naver.com/kcc1335
+- id: ftc
+  name_ko: 공정거래위원회
+  name_en: Korea Fair Trade Commission
+  homepage: https://www.ftc.go.kr
+  verified: false
+  accounts:
+    youtube: '@ftc_korea'
+    instagram: ftc_korea
+    x: ''
+    facebook: ftckorea
+    blog: https://blog.naver.com/ftc_news
+- id: fsc
+  name_ko: 금융위원회
+  name_en: Financial Services Commission
+  homepage: https://www.fsc.go.kr
+  verified: false
+  accounts:
+    youtube: '@fsckorea'
+    instagram: fsc.korea
+    x: fsc_korea
+    facebook: fsc.korea
+    blog: https://blog.naver.com/blogfsc
+- id: acrc
+  name_ko: 국민권익위원회
+  name_en: Anti-Corruption and Civil Rights Commission
+  homepage: https://www.acrc.go.kr
+  verified: false
+  accounts:
+    youtube: '@acrckorea'
+    instagram: acrc_korea
+    x: ''
+    facebook: acrckorea
+    blog: https://blog.naver.com/loveacrc
+- id: pipc
+  name_ko: 개인정보보호위원회
+  name_en: Personal Information Protection Commission
+  homepage: https://www.pipc.go.kr
+  verified: false
+  accounts:
+    youtube: '@pipc_kr'
+    instagram: pipc_kr
+    x: ''
+    facebook: pipc.korea
+    blog: https://blog.naver.com/pipcpr
+- id: nssc
+  name_ko: 원자력안전위원회
+  name_en: Nuclear Safety and Security Commission
+  homepage: https://www.nssc.go.kr
+  verified: false
+  accounts:
+    youtube: '@nssckorea'
+    instagram: nssc_kr
+    x: ''
+    facebook: nssckorea
+    blog: https://blog.naver.com/nssckorea
