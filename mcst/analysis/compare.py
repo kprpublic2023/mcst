@@ -1,24 +1,38 @@
-"""기관·플랫폼 간 비교/랭킹/성장률 산출."""
+"""기관·플랫폼 간 비교/랭킹/성장률 산출.
+
+핸들이 등록되지 않은 (org × platform) 조합은 build_dataframe 단계에서
+이미 제외되었으므로, 모든 함수는 "운영 등록된" 조합만 다룬다.
+'운영률' 분모는 시드 전체 기관 수(50)를 기준으로 계산한다.
+"""
 from __future__ import annotations
 
 import pandas as pd
+
+from ..config import load_orgs
+
+
+def _total_orgs() -> int:
+    return len(load_orgs())
 
 
 def platform_summary(df: pd.DataFrame) -> pd.DataFrame:
     """플랫폼별 운영현황 요약."""
     if df.empty:
         return df
+    total = _total_orgs()
     g = df.groupby("platform").agg(
-        operating_orgs=("followers", lambda s: s.notna().sum()),
-        total_orgs=("org_id", "nunique"),
+        operating_orgs=("org_id", "nunique"),
         total_followers=("followers", "sum"),
         median_followers=("followers", "median"),
         avg_posts_30d=("posts_30d", "mean"),
         avg_engagement_rate=("engagement_rate", "mean"),
         avg_activity=("activity_score", "mean"),
     ).reset_index()
-    g["operation_rate"] = (g["operating_orgs"] / g["total_orgs"]).round(3)
-    return g
+    g["total_orgs"] = total
+    g["operation_rate"] = (g["operating_orgs"] / total).round(3)
+    return g[["platform", "operating_orgs", "total_orgs", "operation_rate",
+              "total_followers", "median_followers", "avg_posts_30d",
+              "avg_engagement_rate", "avg_activity"]]
 
 
 def category_summary(df: pd.DataFrame) -> pd.DataFrame:
@@ -26,7 +40,7 @@ def category_summary(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df
     g = df.groupby(["category_label", "platform"]).agg(
-        operating_orgs=("followers", lambda s: s.notna().sum()),
+        operating_orgs=("org_id", "nunique"),
         total_followers=("followers", "sum"),
         avg_posts_30d=("posts_30d", "mean"),
         avg_activity=("activity_score", "mean"),
@@ -44,11 +58,11 @@ def ranking(df: pd.DataFrame, by: str = "activity_score", top_n: int = 20) -> pd
 
 
 def org_overview(df: pd.DataFrame) -> pd.DataFrame:
-    """기관별 통합 점수 (전 플랫폼 합산/평균)."""
+    """기관별 통합 점수 (등록된 플랫폼 기준)."""
     if df.empty:
         return df
     g = df.groupby(["org_id", "name_ko", "category_label"], dropna=False).agg(
-        platforms_active=("followers", lambda s: int(s.notna().sum())),
+        platforms_active=("platform", "nunique"),
         total_followers=("followers", "sum"),
         avg_activity=("activity_score", "mean"),
         avg_efficiency=("efficiency", "mean"),
@@ -71,10 +85,10 @@ def tier_distribution(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def coverage_matrix(df: pd.DataFrame) -> pd.DataFrame:
-    """기관 × 플랫폼 운영 여부 매트릭스 (1=운영, 0=미운영)."""
+    """기관 × 플랫폼 운영 등록 매트릭스 (1=핸들 등록, 0=미등록)."""
     if df.empty:
         return df
-    df2 = df.assign(operating=df["followers"].notna().astype(int))
+    df2 = df.assign(operating=1)
     pivot = df2.pivot_table(index=["category_label", "name_ko"],
                              columns="platform", values="operating",
                              aggfunc="max", fill_value=0)

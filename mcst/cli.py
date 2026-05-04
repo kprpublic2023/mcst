@@ -84,13 +84,16 @@ def cmd_demo(args: argparse.Namespace) -> None:
     end = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0, microsecond=0)
     snaps: list[Snapshot] = []
     for org in orgs:
-        # 운영 여부 / 활성도를 기관별로 다양하게
-        active_platforms = rng.sample(list(PLATFORMS), k=rng.randint(1, 5))
-        base_followers = {p: rng.randint(500, 200_000) for p in active_platforms}
-        growth = {p: rng.uniform(-0.005, 0.02) for p in active_platforms}  # 주 단위
+        # 시드 YAML에 등록된(=비어있지 않은) 핸들만 데모 대상
+        accounts = org.get("accounts") or {}
+        registered = [p for p in PLATFORMS if (accounts.get(p) or "").strip()]
+        if not registered:
+            continue
+        base_followers = {p: rng.randint(500, 200_000) for p in registered}
+        growth = {p: rng.uniform(-0.005, 0.02) for p in registered}  # 주 단위
         for w in range(weeks):
             captured = end - timedelta(weeks=(weeks - 1 - w))
-            for p in active_platforms:
+            for p in registered:
                 followers = int(base_followers[p] * ((1 + growth[p]) ** w))
                 posts_30d = max(0, int(rng.gauss(8, 4)))
                 posts_90d = posts_30d + max(0, int(rng.gauss(20, 8)))
@@ -100,7 +103,7 @@ def cmd_demo(args: argparse.Namespace) -> None:
                 last_post = captured - timedelta(days=rng.randint(0, 21))
                 snaps.append(Snapshot(
                     org_id=org["id"], category=org["category"], platform=p,
-                    handle=f"@{org['id']}_{p}",
+                    handle=accounts[p],
                     captured_at=captured.isoformat(timespec="seconds"),
                     followers=followers,
                     posts_total=posts_90d * 5 + rng.randint(0, 200),

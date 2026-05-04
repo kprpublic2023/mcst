@@ -7,16 +7,37 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from ..config import CATEGORY_LABELS, load_orgs
+from ..config import CATEGORY_LABELS, PLATFORMS, load_orgs
+
+
+def registered_pairs() -> pd.DataFrame:
+    """시드 YAML 기준 (org_id, platform) 등록 핸들 테이블."""
+    rows = []
+    for org in load_orgs():
+        accounts = org.get("accounts") or {}
+        for p in PLATFORMS:
+            handle = (accounts.get(p) or "").strip()
+            if handle:
+                rows.append({"org_id": org["id"], "platform": p, "handle": handle})
+    return pd.DataFrame(rows)
 
 
 def build_dataframe(snapshots: list[dict[str, Any]]) -> pd.DataFrame:
-    """스냅샷 리스트 -> DataFrame (기관 메타 결합)."""
+    """스냅샷 리스트 -> DataFrame (기관 메타 결합).
+
+    핸들이 시드에 등록되지 않은 (org × platform) 조합은 분석에서 제외한다.
+    """
     if not snapshots:
         return pd.DataFrame()
     df = pd.DataFrame(snapshots)
     df["captured_at"] = pd.to_datetime(df["captured_at"], utc=True)
     df["last_post_at"] = pd.to_datetime(df["last_post_at"], utc=True, errors="coerce")
+
+    # 등록된 핸들이 있는 (org, platform) 만 통과
+    reg = registered_pairs()
+    if reg.empty:
+        return df.iloc[0:0]
+    df = df.merge(reg[["org_id", "platform"]], on=["org_id", "platform"], how="inner")
 
     # 기관 메타데이터 결합
     orgs = pd.DataFrame(load_orgs())[["id", "name_ko", "name_en", "category"]]
@@ -45,10 +66,10 @@ def build_dataframe(snapshots: list[dict[str, Any]]) -> pd.DataFrame:
         labels=["휴면", "저조", "보통", "우수"],
     )
 
-    # 기관별 멀티플랫폼 점수 (운영 중인 플랫폼 수)
-    operating = df[df["followers"].notna()].groupby("org_id")["platform"].nunique()
-    df["multi_platform_count"] = df["org_id"].map(operating).fillna(0).astype(int)
-    df["multi_platform_score"] = (df["multi_platform_count"] / len(df["platform"].unique()) * 100).round(1)
+    # 기관별 멀티플랫폼 점수 (등록된 플랫폼 수 기준)
+    reg_count = reg.groupby("org_id")["platform"].nunique()
+    df["multi_platform_count"] = df["org_id"].map(reg_count).fillna(0).astype(int)
+    df["multi_platform_score"] = (df["multi_platform_count"] / len(PLATFORMS) * 100).round(1)
 
     return df
 
