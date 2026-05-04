@@ -1,0 +1,26 @@
+# Core
+PyYAML>=6.0
+requests>=2.31
+python-dotenv>=1.0
+pandas>=2.2
+numpy>=1.26
+
+# Scraping fallbacks (used when no API key is set)
+beautifulsoup4>=4.12
+lxml>=5.1
+feedparser>=6.0
+
+# Storage
+SQLAlchemy>=2.0
+
+# Dashboard
+streamlit>=1.31
+plotly>=5.20
+altair>=5.2
+
+# Reports
+Jinja2>=3.1
+weasyprint>=61.0   # HTML -> PDF
+
+# Optional API SDKs (not required without keys)
+google-api-python-client>=2.120

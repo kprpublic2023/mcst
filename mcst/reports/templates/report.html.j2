@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>{{ title }}</title>
+<style>
+  body { font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif; margin: 24px; color: #1f2937; }
+  h1 { font-size: 22px; border-bottom: 2px solid #2563eb; padding-bottom: 6px; }
+  h2 { font-size: 16px; margin-top: 28px; color: #1d4ed8; }
+  table { border-collapse: collapse; width: 100%; font-size: 12px; margin-top: 8px; }
+  th, td { border: 1px solid #e5e7eb; padding: 6px 8px; text-align: right; }
+  th { background: #f1f5f9; }
+  th:first-child, td:first-child { text-align: left; }
+  .muted { color: #6b7280; font-size: 11px; }
+  .meta { font-size: 11px; color: #6b7280; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 9999px;
+          background: #dbeafe; color: #1e3a8a; font-size: 11px; margin-right: 4px; }
+</style>
+</head>
+<body>
+  <h1>{{ title }}</h1>
+  <div class="meta">생성일시: {{ generated_at }} · 대상기관: {{ org_count }} · 플랫폼: YouTube · Instagram · X · Facebook · 블로그</div>
+
+  <h2>1. 플랫폼별 운영현황</h2>
+  {{ platform_table | safe }}
+
+  <h2>2. 기관 분류별 요약 (부/처/청/위원회)</h2>
+  {{ category_table | safe }}
+
+  <h2>3. 활성도 상위 20</h2>
+  {{ ranking_activity | safe }}
+
+  <h2>4. 팔로워(구독자) 상위 20</h2>
+  {{ ranking_followers | safe }}
+
+  {% if growth_table %}
+  <h2>5. 최근 {{ growth_window }}일 팔로워 성장률</h2>
+  {{ growth_table | safe }}
+  {% endif %}
+
+  <p class="muted">※ 활성도 점수 = 30일 게시(40) + 90일 게시(20) + 마지막 게시 신선도(20) + 인게이지율(20)</p>
+</body>
+</html>
