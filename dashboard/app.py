@@ -21,6 +21,9 @@ from mcst.analysis import (
     category_summary,
     ranking,
     growth_table,
+    org_overview,
+    tier_distribution,
+    coverage_matrix,
 )
 from mcst.config import PLATFORMS, Settings, load_orgs
 from mcst.reports import render_html, render_pdf
@@ -97,8 +100,9 @@ col3.metric("총 팔로워(필터)", fmt_int(fdf["followers"].sum()))
 col4.metric("평균 활성도", f"{fdf['activity_score'].mean():.1f}" if not fdf.empty else "-")
 
 # ---------- Tabs ------------------------------------------------------------
-tab_overview, tab_platform, tab_org, tab_compare, tab_trend, tab_report = st.tabs(
-    ["개요", "플랫폼별", "기관별", "비교/랭킹", "트렌드", "리포트"]
+(tab_overview, tab_platform, tab_org, tab_compare,
+ tab_coverage, tab_trend, tab_report) = st.tabs(
+    ["개요", "플랫폼별", "기관별", "비교/랭킹", "운영 매트릭스", "트렌드", "리포트"]
 )
 
 with tab_overview:
@@ -152,15 +156,43 @@ with tab_org:
             st.plotly_chart(fig, use_container_width=True)
 
 with tab_compare:
-    st.subheader("활성도 상위")
-    st.dataframe(ranking(fdf, "activity_score", 30),
+    st.subheader("기관 종합 점수 (전 플랫폼 통합)")
+    st.caption("종합점수 = 평균활성도×0.5 + 멀티플랫폼 가중치×0.3 + 인게이지율×0.2")
+    overview = org_overview(fdf)
+    st.dataframe(overview, use_container_width=True, hide_index=True)
+    if not overview.empty:
+        fig = px.bar(overview.head(20), x="name_ko", y="composite_score",
+                     color="category_label", title="종합점수 상위 20")
+        st.plotly_chart(fig, use_container_width=True)
+
+    st.subheader("플랫폼별 성과 등급 분포")
+    td = tier_distribution(fdf)
+    if not td.empty:
+        st.dataframe(td, use_container_width=True, hide_index=True)
+
+    st.subheader("랭킹 (지표 선택)")
+    metric = st.selectbox(
+        "정렬 기준",
+        ["activity_score", "followers", "engagement_rate",
+         "efficiency", "posts_30d", "multi_platform_score"],
+    )
+    st.dataframe(ranking(fdf, metric, 30),
                  use_container_width=True, hide_index=True)
-    st.subheader("팔로워(구독자) 상위")
-    st.dataframe(ranking(fdf, "followers", 30),
-                 use_container_width=True, hide_index=True)
-    st.subheader("인게이지율 상위")
-    st.dataframe(ranking(fdf, "engagement_rate", 30),
-                 use_container_width=True, hide_index=True)
+
+with tab_coverage:
+    st.subheader("기관 × 플랫폼 운영 매트릭스")
+    st.caption("1 = 해당 플랫폼 운영, 0 = 미운영. total 은 운영 플랫폼 수.")
+    cov = coverage_matrix(fdf)
+    if cov.empty:
+        st.info("표시할 데이터가 없습니다.")
+    else:
+        st.dataframe(cov, use_container_width=True, hide_index=True)
+        st.subheader("플랫폼별 운영률")
+        rate = (cov[list(PLATFORMS)].mean() * 100).round(1).reset_index()
+        rate.columns = ["platform", "operation_rate(%)"]
+        fig = px.bar(rate, x="platform", y="operation_rate(%)",
+                     text="operation_rate(%)", title="필터 대상 기관 중 플랫폼별 운영률")
+        st.plotly_chart(fig, use_container_width=True)
 
 with tab_trend:
     if hist_df.empty:

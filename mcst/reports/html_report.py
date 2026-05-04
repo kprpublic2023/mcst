@@ -13,6 +13,8 @@ from ..analysis import (
     category_summary,
     ranking,
     growth_table,
+    org_overview,
+    tier_distribution,
 )
 
 TEMPLATE_DIR = Path(__file__).parent / "templates"
@@ -42,6 +44,8 @@ def render_html(latest_snapshots: list[dict], history: list[dict] | None = None,
         category_table=_to_html(category_summary(df)),
         ranking_activity=_to_html(ranking(df, "activity_score", 20)),
         ranking_followers=_to_html(ranking(df, "followers", 20)),
+        org_overview=_to_html(org_overview(df).head(30)),
+        tier_dist=_to_html(tier_distribution(df)),
         growth_table=_to_html(growth) if not growth.empty else "",
         growth_window=30,
     )

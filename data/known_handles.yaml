@@ -1,0 +1,225 @@
+# 큐레이션된 정부조직 SNS 핸들 시드.
+#
+# 이 파일은 자동 시드의 출발점입니다. 모든 항목은 verified=false 와 동등하게
+# 취급되며, 사용자가 검토 후 data/gov_orgs.yaml 로 직접 옮기거나
+# `python scripts/apply_known_handles.py --apply` 로 일괄 반영할 수 있습니다.
+#
+# 표기 규칙:
+#   youtube   : "@handle" (또는 channel/UCxxxx)
+#   instagram : "username" (앞 @ 제거)
+#   x         : "username"
+#   facebook  : "pagename"
+#   blog      : 전체 URL
+#
+# confidence 필드:
+#   high   - 공식 홈페이지 푸터에서 자주 확인되는 핸들
+#   medium - 일반적으로 알려진 핸들이지만 변경 가능성 있음
+#   low    - 추정값. 반드시 사용자가 확인 필요
+#
+# 빈 항목은 자동 시드 대상이 아니므로, scripts/discover_handles.py 로 보완하세요.
+
+# ----- 19부 ---------------------------------------------------------------
+moef:
+  confidence: medium
+  accounts: { youtube: "@moefkorea", instagram: "moef_korea", x: "moefkorea",
+              facebook: "moefkorea", blog: "https://blog.naver.com/mosfnet" }
+moe:
+  confidence: medium
+  accounts: { youtube: "@ourMOE", instagram: "ourmoe", x: "ourmoe",
+              facebook: "ourmoe", blog: "https://blog.naver.com/moeblog" }
+msit:
+  confidence: medium
+  accounts: { youtube: "@msit_kr", instagram: "with_msit", x: "MSIT_KR",
+              facebook: "withmsit", blog: "https://blog.naver.com/with_msip" }
+mofa:
+  confidence: medium
+  accounts: { youtube: "@mofakr", instagram: "mofa_kr", x: "mofa_kr",
+              facebook: "mofakr.eng", blog: "https://blog.naver.com/mofakr" }
+unikorea:
+  confidence: medium
+  accounts: { youtube: "@unikoreatv", instagram: "ourunikorea", x: "UniKorea",
+              facebook: "unikoreaMOU", blog: "https://blog.naver.com/gounikorea" }
+moj:
+  confidence: medium
+  accounts: { youtube: "@moj_korea", instagram: "moj_korea", x: "MOJ_KOREA",
+              facebook: "MOJkorea", blog: "https://blog.naver.com/mojjustice" }
+mnd:
+  confidence: medium
+  accounts: { youtube: "@MNDKOR", instagram: "rokmnd", x: "ROK_MND",
+              facebook: "MNDKOR", blog: "https://mndpr.tistory.com" }
+mois:
+  confidence: medium
+  accounts: { youtube: "@moiskr", instagram: "mois_kr", x: "mopaspr",
+              facebook: "mopaspr", blog: "https://blog.naver.com/mopaspr" }
+mpva:
+  confidence: low
+  accounts: { youtube: "@mpva", instagram: "mpva_korea", x: "",
+              facebook: "mpvakorea", blog: "https://blog.naver.com/mpva_korea" }
+mcst:
+  confidence: medium
+  accounts: { youtube: "@mcstkorea", instagram: "mcstkorea", x: "mcst_korea",
+              facebook: "mcst", blog: "https://blog.naver.com/mcstkorea" }
+mafra:
+  confidence: medium
+  accounts: { youtube: "@maf_official", instagram: "korea_mafra", x: "",
+              facebook: "korea.mafra", blog: "https://blog.naver.com/mafrakr" }
+motie:
+  confidence: medium
+  accounts: { youtube: "@motiekr", instagram: "motie_kr", x: "motiekr",
+              facebook: "motiekr", blog: "https://blog.naver.com/mocienews" }
+mohw:
+  confidence: medium
+  accounts: { youtube: "@mohwpr", instagram: "mohw_kr", x: "mohwpr",
+              facebook: "mohwpr", blog: "https://blog.naver.com/mohw2016" }
+me:
+  confidence: medium
+  accounts: { youtube: "@me_kr", instagram: "minenviron", x: "ME_korea",
+              facebook: "mineenvironment", blog: "https://blog.naver.com/mesns" }
+moel:
+  confidence: medium
+  accounts: { youtube: "@moelkr", instagram: "molab_kr", x: "molab_kr",
+              facebook: "moel.kr", blog: "https://blog.naver.com/molab_suda" }
+mogef:
+  confidence: medium
+  accounts: { youtube: "@mogefkorea", instagram: "mogef.kr", x: "mogefkorea",
+              facebook: "mogefkorea", blog: "https://blog.naver.com/mogefkorea" }
+molit:
+  confidence: medium
+  accounts: { youtube: "@molit_korea", instagram: "molit_korea", x: "molitkorea",
+              facebook: "molitkorea", blog: "https://blog.naver.com/mltmkr" }
+mof:
+  confidence: medium
+  accounts: { youtube: "@momaf_kr", instagram: "momaf_kr", x: "MOFKorea",
+              facebook: "momafkr", blog: "https://blog.naver.com/koreamof" }
+mss:
+  confidence: medium
+  accounts: { youtube: "@mss_korea", instagram: "mss_kr", x: "mss_kr",
+              facebook: "smbakorea", blog: "https://blog.naver.com/bizinfo1357" }
+
+# ----- 6처 ----------------------------------------------------------------
+pss:
+  confidence: low
+  accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
+opm:
+  confidence: low
+  accounts: { youtube: "@opmkr", instagram: "korea_opm", x: "",
+              facebook: "korea.opm", blog: "https://blog.naver.com/primeminister" }
+mpm:
+  confidence: low
+  accounts: { youtube: "@mpm_korea", instagram: "mpm_korea", x: "",
+              facebook: "mpm.kr", blog: "https://blog.naver.com/happy_mpm" }
+moleg:
+  confidence: low
+  accounts: { youtube: "@molegkr", instagram: "moleg_kr", x: "",
+              facebook: "moleg.korea", blog: "https://blog.naver.com/molegkorea" }
+mfds:
+  confidence: medium
+  accounts: { youtube: "@mfds_kr", instagram: "mfds_kr", x: "mfds_kr",
+              facebook: "mfds.korea", blog: "https://blog.naver.com/kfdazzang" }
+office_placeholder:
+  confidence: low
+  accounts: { youtube: "", instagram: "", x: "", facebook: "", blog: "" }
+
+# ----- 19청 ---------------------------------------------------------------
+nts:
+  confidence: medium
+  accounts: { youtube: "@ntskorea", instagram: "nts_korea", x: "",
+              facebook: "ntskorea", blog: "https://blog.naver.com/ntscafe" }
+customs:
+  confidence: medium
+  accounts: { youtube: "@customs_kr", instagram: "korea.customs", x: "",
+              facebook: "koreacustomsservice", blog: "https://blog.naver.com/k_customs" }
+pps:
+  confidence: low
+  accounts: { youtube: "@ppskorea", instagram: "korea_pps", x: "",
+              facebook: "ppskorea", blog: "https://blog.naver.com/ppskorea" }
+kostat:
+  confidence: medium
+  accounts: { youtube: "@hi_kostat", instagram: "hi_kostat", x: "hi_kostat",
+              facebook: "hi.kostat", blog: "https://blog.naver.com/hi_nso" }
+spo:
+  confidence: low
+  accounts: { youtube: "@spokorea", instagram: "spo_korea", x: "",
+              facebook: "spokorea", blog: "https://blog.naver.com/spogood" }
+mma:
+  confidence: low
+  accounts: { youtube: "@mma_korea", instagram: "mma_korea", x: "",
+              facebook: "mmakorea", blog: "https://blog.naver.com/mma9090" }
+dapa:
+  confidence: low
+  accounts: { youtube: "@dapa_korea", instagram: "dapa_korea", x: "",
+              facebook: "dapakorea", blog: "https://blog.naver.com/dapapr" }
+police:
+  confidence: high
+  accounts: { youtube: "@polinarykorea", instagram: "koreanpolice", x: "polinarykorea",
+              facebook: "polinarykorea", blog: "https://polinlove.tistory.com" }
+nfa:
+  confidence: medium
+  accounts: { youtube: "@nfa119", instagram: "korea_119_nfa", x: "",
+              facebook: "kfa119", blog: "https://blog.naver.com/nfa119" }
+oka:
+  confidence: low
+  accounts: { youtube: "@oka_kr", instagram: "oka_korea", x: "",
+              facebook: "okakorea", blog: "" }
+khs:
+  confidence: low
+  accounts: { youtube: "@khs_korea", instagram: "korea_heritage_service", x: "",
+              facebook: "koreaheritageservice", blog: "https://blog.naver.com/chagov" }
+rda:
+  confidence: low
+  accounts: { youtube: "@rdakorea", instagram: "rda_korea", x: "",
+              facebook: "rdakorea", blog: "https://blog.naver.com/rda2448" }
+forest:
+  confidence: medium
+  accounts: { youtube: "@forestkorea1967", instagram: "korea_forest_service", x: "",
+              facebook: "kfs.korea", blog: "https://blog.naver.com/foa2010" }
+kipo:
+  confidence: medium
+  accounts: { youtube: "@kipokorea", instagram: "kipo_korea", x: "kipokorea",
+              facebook: "kipokorea", blog: "https://blog.naver.com/kipoworld2" }
+kdca:
+  confidence: medium
+  accounts: { youtube: "@kdca_official", instagram: "kdca_kr", x: "KoreaCDC",
+              facebook: "kdca.kr", blog: "https://blog.naver.com/korea_cdc" }
+kma:
+  confidence: medium
+  accounts: { youtube: "@weatherkma", instagram: "kma_sky", x: "kma_sky",
+              facebook: "kmaweather", blog: "https://blog.naver.com/kma_131" }
+macc:
+  confidence: low
+  accounts: { youtube: "@macckorea", instagram: "macc_kr", x: "",
+              facebook: "macckorea", blog: "https://blog.naver.com/happymaac" }
+saemangeum:
+  confidence: low
+  accounts: { youtube: "@saemangeum", instagram: "saemangeum_official", x: "",
+              facebook: "saemangeumkorea", blog: "https://blog.naver.com/sda1991" }
+kcg:
+  confidence: medium
+  accounts: { youtube: "@kcg_official", instagram: "korea_coast_guard", x: "",
+              facebook: "kcgkorea", blog: "https://blog.naver.com/kcgpr" }
+
+# ----- 6위원회 ------------------------------------------------------------
+kcc:
+  confidence: medium
+  accounts: { youtube: "@kcckorea", instagram: "kcc_kr", x: "",
+              facebook: "kcc.korea", blog: "https://blog.naver.com/kcc1335" }
+ftc:
+  confidence: medium
+  accounts: { youtube: "@ftc_korea", instagram: "ftc_korea", x: "",
+              facebook: "ftckorea", blog: "https://blog.naver.com/ftc_news" }
+fsc:
+  confidence: medium
+  accounts: { youtube: "@fsckorea", instagram: "fsc.korea", x: "fsc_korea",
+              facebook: "fsc.korea", blog: "https://blog.naver.com/blogfsc" }
+acrc:
+  confidence: medium
+  accounts: { youtube: "@acrckorea", instagram: "acrc_korea", x: "",
+              facebook: "acrckorea", blog: "https://blog.naver.com/loveacrc" }
+pipc:
+  confidence: low
+  accounts: { youtube: "@pipc_kr", instagram: "pipc_kr", x: "",
+              facebook: "pipc.korea", blog: "https://blog.naver.com/pipcpr" }
+nssc:
+  confidence: low
+  accounts: { youtube: "@nssckorea", instagram: "nssc_kr", x: "",
+              facebook: "nssckorea", blog: "https://blog.naver.com/nssckorea" }

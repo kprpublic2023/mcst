@@ -26,6 +26,28 @@ python -m mcst.cli demo --weeks 8        # 8주치 가상 트렌드 데이터 �
 streamlit run dashboard/app.py
 ```
 
+## 핸들 시드 채우기
+
+세 가지 방법을 선택해서/조합해서 사용할 수 있습니다.
+
+```bash
+# 방법1) 큐레이션된 핸들을 일괄 적용 (오프라인, 권장 시작점)
+python scripts/apply_known_handles.py            # dry-run
+python scripts/apply_known_handles.py --apply    # 실제 반영
+python scripts/apply_known_handles.py --apply --min-confidence medium
+
+# 방법2) 각 기관 홈페이지를 크롤링해서 자동 발견 (네트워크 필요)
+python scripts/discover_handles.py               # dry-run
+python scripts/discover_handles.py --apply       # 실제 반영
+python scripts/discover_handles.py --apply --org moef --org moe   # 일부만
+
+# 방법3) 직접 수정
+$EDITOR data/gov_orgs.yaml
+```
+
+세 방법 모두 **이미 채워진 값은 덮어쓰지 않습니다**. 검토가 끝난 항목은
+`verified: true` 로 표시해 두면 좋습니다.
+
 ## 실 수집
 
 1. `data/gov_orgs.yaml` 의 각 기관 `accounts` 항목을 채우고 `verified: true` 로 변경
@@ -73,12 +95,19 @@ mcst/
 └── reports/output/             # 생성된 산출물 (gitignored)
 ```
 
-## 활성도 점수 정의
+## 분석 지표
 
-```
-activity_score = 30일 게시(40) + 90일 게시(20) + 마지막 게시 신선도(20) + 인게이지율(20)
-```
+| 지표 | 정의 |
+|---|---|
+| `activity_score` | 30일 게시(40) + 90일 게시(20) + 신선도(20) + 인게이지율(20). 0~100 |
+| `efficiency` | 팔로워 1만 명당 평균 인게이지(좋아요+댓글) |
+| `engagement_rate` | (좋아요+댓글)/팔로워, 게시 평균 |
+| `tier` | 활성도 기반 등급 — 휴면(≤20) / 저조(≤50) / 보통(≤75) / 우수(>75) |
+| `multi_platform_score` | 기관이 운영 중인 플랫폼 수 / 5 × 100 |
+| `composite_score` | 평균활성도×0.5 + 멀티플랫폼×0.3 + 인게이지율×0.2 |
+| `growth_pct` | 지정 기간(기본 30일) 동안의 팔로워 증감률 |
 
+세부 임계값:
 - 30일에 12건 이상 게시 시 만점(40)
 - 마지막 게시일이 60일 이상 지나면 신선도 0
 - 인게이지율 5% 이상이면 만점

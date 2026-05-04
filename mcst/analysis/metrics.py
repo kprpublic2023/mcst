@@ -29,6 +29,27 @@ def build_dataframe(snapshots: list[dict[str, Any]]) -> pd.DataFrame:
     df["days_since_last_post"] = (
         pd.Timestamp.now(tz="UTC") - df["last_post_at"]
     ).dt.days
+
+    # 효율성: 팔로워 1만 명당 인게이지 (좋아요+댓글)
+    eng_per_post = (df["avg_likes"].fillna(0) + df["avg_comments"].fillna(0))
+    df["efficiency"] = np.where(
+        df["followers"].fillna(0) > 0,
+        eng_per_post / df["followers"].replace({0: np.nan}) * 10_000,
+        np.nan,
+    )
+
+    # 성과 등급 (활성도 점수 기반)
+    df["tier"] = pd.cut(
+        df["activity_score"],
+        bins=[-0.01, 20, 50, 75, 100.01],
+        labels=["휴면", "저조", "보통", "우수"],
+    )
+
+    # 기관별 멀티플랫폼 점수 (운영 중인 플랫폼 수)
+    operating = df[df["followers"].notna()].groupby("org_id")["platform"].nunique()
+    df["multi_platform_count"] = df["org_id"].map(operating).fillna(0).astype(int)
+    df["multi_platform_score"] = (df["multi_platform_count"] / len(df["platform"].unique()) * 100).round(1)
+
     return df
 
 

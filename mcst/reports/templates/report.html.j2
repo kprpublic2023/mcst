@@ -33,8 +33,14 @@
   <h2>4. 팔로워(구독자) 상위 20</h2>
   {{ ranking_followers | safe }}
 
+  <h2>5. 기관 종합 점수 (전 플랫폼 통합)</h2>
+  {{ org_overview | safe }}
+
+  <h2>6. 플랫폼별 성과 등급 분포</h2>
+  {{ tier_dist | safe }}
+
   {% if growth_table %}
-  <h2>5. 최근 {{ growth_window }}일 팔로워 성장률</h2>
+  <h2>7. 최근 {{ growth_window }}일 팔로워 성장률</h2>
   {{ growth_table | safe }}
   {% endif %}
 
